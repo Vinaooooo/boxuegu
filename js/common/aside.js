@@ -50,13 +50,13 @@ define(['jquery', 'jqueryCookie', 'template', 'nprogress'], function ($, undefin
     // 根据页面定位左侧导航焦点
     (function () {
         /**
+         * 根据页面规律
          * 1.获取当前页面的路径
          * 2.移除所有a标签的active类名
          * 3.把路径当做属性选择器选择页面对应的a标签,给对应的a标签单独添加
          */
-        //      var pathname = location.pathname;
-        //      $('.navs a').removeClass('active').filter('[href="'+ pathname + '"]').addClass('active');
-
+             var pathname = location.pathname;
+             $('.navs a').removeClass('active').filter('[href="'+ pathname + '"]').addClass('active');
 
 
         /**
@@ -71,12 +71,13 @@ define(['jquery', 'jqueryCookie', 'template', 'nprogress'], function ($, undefin
          */
 
         var pathHref = {
-            '/html/teacher/teacher_add.html': 'html/teacher/teacher_list.html'
-        };
-        var pathname = location.pathname;
-        var aHref = pathHref[pathname] ? pathHref[pathname] : pathname;
-        $('.nav a').removeClass('active').filter('[href="' + aHref + '"]').addClass('active');
+			'/html/teacher/teacher_add.html': '/html/teacher/teacher_list.html'
+		};
+		var pathname = location.pathname;
+		var aHref = pathHref[pathname]? pathHref[pathname]: pathname;
+		$('.navs a').removeClass('active').filter('[href="' + aHref + '"]').addClass('active');
         // 页面所有代码执行完毕，进度条结束
         nprogress.done();
+
     })();
 })

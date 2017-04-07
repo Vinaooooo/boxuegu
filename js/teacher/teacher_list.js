@@ -1,4 +1,4 @@
-define(['jquery','aside','header','loading','nprogress','template'], function($,undefined,undefined,undefined,nprogress,template) {
+define(['aside','header','loading','nprogress','jquery','template'], function(undefined,undefined,undefined,nprogress,$,template) {
 	(function(){
         /**
          * 1.发送请求获取讲师列表
