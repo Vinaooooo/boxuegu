@@ -24,16 +24,17 @@ define([], function () {
       teacherList: 'js/teacher/teacher_list',
       userProfile: 'js/user/user_profile',
       userList: 'js/user/user_list',
-			common:'js/common/common',
-			aside:'js/common/aside',
-			header:'js/common/header',
-			loading:'js/common/loading',
+      common: 'js/common/common',
+      aside: 'js/common/aside',
+      header: 'js/common/header',
+      loading: 'js/common/loading',
+      util: 'js/common/util',
 
       // 配置第三方js模块别名
       template: 'lib/artTemplate/template-debug',
       bootstrap: 'lib/bootstrap/js/bootstrap',
       datepicker: 'lib/bootstrap-datepicker/js/bootstrap-datepicker',
-			datepickerCN: 'lib/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
+      datepickerCN: 'lib/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
       ckeditor: 'lib/ckeditor/ckeditor',
       ckeditorLand: 'lib/ckeditor/lang/zh-cn',
       echarts: 'lib/echarts/echarts.min',
@@ -42,24 +43,38 @@ define([], function () {
       jqueryForm: 'lib/jquery-form/jquery.form',
       jqueryRegion: 'lib/jquery-region/jquery.region',
       nprogress: 'lib/nprogress/nprogress',
+      uploadify: 'lib/uploadify/jquery.uploadify'
     },
 
     shim: {
+    	
       //bootstrap是非define依赖于jquery
       bootstrap: {
         deps: ['jquery']
       },
-			datepickerCN: {
-				deps: ['jquery', 'datepicker']
-			}
+      
+      // 日期插件的语言包是非define定义的模块
+      datepickerCN: {
+      	deps: ['jquery', 'datepicker']
+      },
+      
+      // 这个富文本编辑器没有依赖，也是非defined定义的模块，这个模块暴露了一个全局变量CKEDITOR
+      ckeditor: {
+      	exports: 'CKEDITOR'
+      },
+      
+      // 这个上传文件的插件依赖jquery
+      uploadify: {
+      	deps: ['jquery']
+      }
     }
   });
   
-	// 进度条
-	require(['nprogress'],function(nprogress){
-		nprogress.start();
-	})
-
+  // 所有的页面，只要main.js加载完毕了，那么就优先加载进度条插件，显式进度条
+  require(['nprogress'], function(nprogress) {
+  	nprogress.start();
+  });
+  
   // 这里根据页面的路径进行不同页面的区分进而加载不同的js
   var pathname = location.pathname;
   

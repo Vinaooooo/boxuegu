@@ -32,4 +32,19 @@ define(['jquery', 'jqueryCookie'], function ($, undefined) {
         });
     })();
 
+    // 对外暴露一个对象
+    return {
+        // 把页面中的查询字符串转换为对象的形式
+        parseSearch:function(searchName){
+            var searchArr = location.search;
+            var searchObj = {};
+            for(var i=0;i<searchArr.length;i++){
+                tempArr = searchArr[i].split('=');
+                searchObj[tempArr[0]] = tempArr[1];
+            }
+
+            return (searchName == null)? searchObj: searchObj[searchName];
+        }
+    }
+
 })
