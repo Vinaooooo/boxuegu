@@ -123,7 +123,7 @@ define([], function () {
   		break;
   	case '/html/teacher/teacher_add.html':
   	  require(['teacherAdd']);
-  		break;
+  		break; 
   	case '/html/teacher/teacher_list.html':
   	  require(['teacherList']);
   		break;
